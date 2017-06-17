@@ -12,7 +12,7 @@ namespace Example.Services.Test
     [TestClass]
     public class FooService_Should
     {
-        [TestMethod, ExpectedException(typeof(FooServiceException))]
+        [TestMethod, ExpectedException(typeof(ExampleServiceException))]
         public async Task Throw_Exception_On_Unsuccessful_Response()
         {
             //arrange - set up an error response
