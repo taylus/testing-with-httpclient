@@ -9,7 +9,7 @@ namespace Example.Services.Test
     [TestClass]
     public class WeatherService_Should
     {
-        [TestMethod ExpectedException(typeof(ExampleServiceException))]
+        [TestMethod, ExpectedException(typeof(ExampleServiceException))]
         public async Task Throw_Exception_On_Unsuccessful_Response()
         {
             //arrange - set up an error response
