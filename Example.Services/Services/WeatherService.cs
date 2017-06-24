@@ -24,6 +24,7 @@ namespace Example.Services
         /// </summary>
         public async Task<Weather> GetWeather(string city)
         {
+            if (string.IsNullOrWhiteSpace(city)) throw new ArgumentException("City cannot be empty.");
             var request = new HttpRequestMessage(HttpMethod.Get, $"?city={Uri.EscapeDataString(city)}");
             string responseContent = await GetResponseContentAsync(request);
             return JsonConvert.DeserializeObject<Weather>(responseContent);

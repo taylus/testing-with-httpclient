@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,6 +10,26 @@ namespace Example.Services.Test
     [TestClass]
     public class WeatherService_Should
     {
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public async Task Throw_Exception_When_City_Is_Null()
+        {
+            //arrange
+            var weatherService = new WeatherService(new HttpClient(new StubHttpClientHandler()));
+
+            //act
+            await weatherService.GetWeather(null);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public async Task Throw_Exception_When_City_Is_Empty()
+        {
+            //arrange
+            var weatherService = new WeatherService(new HttpClient(new StubHttpClientHandler()));
+
+            //act
+            await weatherService.GetWeather("   ");
+        }
+
         [TestMethod, ExpectedException(typeof(ExampleServiceException))]
         public async Task Throw_Exception_On_Unsuccessful_Response()
         {
